@@ -1,0 +1,203 @@
+// Code 
+
+
+#include <LiquidCrystal.h>
+#include <SoftwareSerial.h>
+LiquidCrystal lcd(13,12,11,10,9,8);
+SoftwareSerial BTSerial(18,19);//rx,tx
+const int g1 = 2;
+const int g2 = 3;
+const int g3 = 4;
+const int g4 = 5;
+const int buzzer = 7;
+void setup()
+{
+BTSerial.begin(9600);
+pinMode(g1, INPUT_PULLUP);
+pinMode(g2, INPUT_PULLUP);
+pinMode(g3, INPUT_PULLUP);
+pinMode(g4, INPUT_PULLUP);
+pinMode(buzzer,OUTPUT);
+BTSerial.begin(9600);
+BTSerial.println("Hand Gestures Monitoring");
+Buzzer();
+lcd.begin(16, 2); 
+lcd.print(" HandGestures ");
+lcd.setCursor(0, 1);
+lcd.print(" Monitoring Sys "); // if(digitalRead(Slot1)==LOW)..Reading Input
+delay(3000);
+lcd.clear();
+}
+void loop()
+{
+if(digitalRead(g1)==HIGH && digitalRead(g2)==LOW && digitalRead(g3)==LOW && 
+digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED WATER ");
+BTSerial.println("I NEED WATER ");
+//delay(1000);
+44
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==HIGH && digitalRead(g3)==LOW && 
+digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.print("I NEED TABLETS ");
+BTSerial.println("I NEED TABLETS");
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==LOW && digitalRead(g3)==HIGH && 
+digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.print("I NEED HELP ");
+BTSerial.println("I NEED HELP");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==HIGH && digitalRead(g3)==LOW && 
+digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.print("I NEED FOOD ");
+BTSerial.println("I NEED FOOD");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==LOW && digitalRead(g3)==HIGH && 
+digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED MY BAG ");
+BTSerial.println("I NEED MY BAG");
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==HIGH && digitalRead(g3)==HIGH && 
+digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED MY PEN ");
+45
+BTSerial.println("I NEED MY PEN");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==HIGH && digitalRead(g3)==HIGH 
+&& digitalRead(g4)==LOW )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED MY BOOK ");
+BTSerial.println("I NEED MY BOOK");
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==LOW && digitalRead(g3)==LOW && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED MY SHOES ");
+BTSerial.println("I NEED MY SHOES");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==LOW && digitalRead(g3)==LOW && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED MY WATCH ");
+BTSerial.println("I NEED MY WATCH");
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==HIGH && digitalRead(g3)==LOW && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("I NEED MY JEWELLARY ");
+BTSerial.println("I NEED MY JEWELLARY");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==HIGH && digitalRead(g3)==LOW && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+46
+lcd.println("PLS ASSIST ME ");
+BTSerial.println("PLS ASSIST ME");
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==LOW && digitalRead(g3)==HIGH && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("FIND MY LAPTOP ");
+BTSerial.println("FIND MY LAPTOP");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==LOW && digitalRead(g3)==HIGH && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("FIND MY MOBILE ");
+BTSerial.println("FIND MY MOBILE");
+Buzzer();
+}
+else if(digitalRead(g1)==LOW && digitalRead(g2)==HIGH && digitalRead(g3)==HIGH && 
+digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("IAM SORRY ");
+BTSerial.println("IAM SORRY");
+Buzzer();
+}
+else if(digitalRead(g1)==HIGH && digitalRead(g2)==HIGH && digitalRead(g3)==HIGH 
+&& digitalRead(g4)==HIGH )
+{
+lcd.setCursor(0,0);
+lcd.print("WELCOME ");
+lcd.setCursor(0, 1);
+lcd.println("THANKYOU SO MUCH ");
+BTSerial.println("THANKYOU SO MUCH");
+Buzzer();
+}
+else
+{
+lcd.setCursor(0, 0);
+lcd.print(" HandGestures ");
+47
+lcd.setCursor(0, 1);
+lcd.println(" Monitoring Sys "); // if(digitalRead(Slot1)==LOW)..Reading 
+Input
+}
+delay(1000);
+}
+void Buzzer()
+{
+digitalWrite(buzzer,LOW);
+delay(100);
+digitalWrite(buzzer,HIGH);
+}
